@@ -131,10 +131,10 @@ npm run dev
 ---
 
 ## 👨‍💻 Team Members
-- Aaron Sonnie – Founder & Lead Developer
-- Sona Daison – Co-Founder & Frontend Developer
-- Karivardhan – Co-Founder & Tester
-- Thrithwik – Co-Founder & Backend Developer
+- Yehaasary KM   – Frontend Developer
+- Karivaradhan C – AI Engineer
+- Sangati Chapla – Full stack/Integration
+- Kanchi Karthik – QA & Documentation
 
 ---
 
