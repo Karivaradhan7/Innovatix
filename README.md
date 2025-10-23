@@ -153,11 +153,15 @@ This project is licensed under the **MIT License** – see the `LICENSE` file fo
 
 ## 🙏 Acknowledgments
 - Google Gemini API for AI capabilities
-- shadcn/ui for the component library
+- shadcn/ui for the component library/
 - Tailwind CSS for fast and responsive styling
 - React & TypeScript communities for extensive docs
 - All contributors who made this project possible
 
 ---
+## 🎥 Output Video:
+
+Watch the project Output here: [Output Video](https://drive.google.com/file/d/1uVBRpxFMqAOke9LyKfYp-dJUW2-9Qh7I/view?usp=sharing)
+
 
 > © 2025 Aptora. All rights reserved.
