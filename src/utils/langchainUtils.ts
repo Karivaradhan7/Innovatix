@@ -130,27 +130,48 @@ export const createGenerationChain = (feature: keyof typeof promptTemplates) => 
   return chain;
 };
 
-// Execute the chain with the user's prompt
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
 export const generateWithLangChain = async (
-  feature: keyof typeof promptTemplates, 
-  userPrompt: string
+  feature: keyof typeof promptTemplates,
+  userPrompt: string,
+  retryCount = 0,
+  maxRetries = 3
 ): Promise<string> => {
   try {
     console.log("Starting generation with feature:", feature);
     console.log("User prompt length:", userPrompt.length);
-    
+    console.log("Retry attempt:", retryCount);
+
     const startTime = Date.now();
     const chain = createGenerationChain(feature);
     const result = await chain.invoke({ userPrompt });
     const endTime = Date.now();
-    
+
     console.log("Generation completed in:", endTime - startTime, "ms");
     console.log("Result length:", result.length);
-    
+
     return result;
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error in LangChain generation:", error);
     console.error("Error details:", error instanceof Error ? error.message : error);
+
+    const isRateLimitError = error?.message?.includes("quota") ||
+                            error?.message?.includes("rate limit") ||
+                            error?.message?.includes("429") ||
+                            error?.status === 429;
+
+    if (isRateLimitError && retryCount < maxRetries) {
+      const delay = Math.min(1000 * Math.pow(2, retryCount), 10000);
+      console.log(`Rate limit hit. Retrying in ${delay}ms... (Attempt ${retryCount + 1}/${maxRetries})`);
+      await sleep(delay);
+      return generateWithLangChain(feature, userPrompt, retryCount + 1, maxRetries);
+    }
+
+    if (isRateLimitError) {
+      throw new Error("API rate limit exceeded. Please wait a moment and try again. The Gemini API has limits on requests per minute.");
+    }
+
     throw error;
   }
 };
