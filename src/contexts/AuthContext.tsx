@@ -1,20 +1,17 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { 
-  getAuth, 
-  createUserWithEmailAndPassword, 
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut as firebaseSignOut,
   onAuthStateChanged,
   sendPasswordResetEmail,
   User
 } from "firebase/auth";
-import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "@/lib/firebase";
+import { app } from "@/lib/firebase";
 import { toast } from "sonner";
 import { useNavigate as useReactRouterNavigate, useLocation as useReactRouterLocation } from "react-router-dom";
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 type AuthContextType = {
