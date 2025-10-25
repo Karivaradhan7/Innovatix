@@ -13,6 +13,7 @@ import NotesGenerator from "./pages/NotesGenerator";
 import FlashcardGenerator from "./pages/FlashcardGenerator";
 import LearningAssistant from "./pages/LearningAssistant";
 import DocumentationGenerator from "./pages/DocumentationGenerator";
+import MindmapGenerator from "./pages/MindmapGenerator";
 import FAQ from "./pages/FAQ";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
@@ -40,6 +41,7 @@ const App = () => {
               <Route path="/notes-generator" element={<NotesGenerator />} />
               <Route path="/flashcard-generator" element={<FlashcardGenerator />} />
               <Route path="/learning-assistant" element={<LearningAssistant />} />
+              <Route path="/mindmap-generator" element={<MindmapGenerator />} />
               <Route path="/documentation" element={<DocumentationGenerator />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />

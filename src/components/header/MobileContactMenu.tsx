@@ -1,6 +1,6 @@
 
 import React from "react";
-import { ChevronDown, Mail, Phone } from "lucide-react";
+import { ChevronDown, Phone } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,16 +15,13 @@ export const MobileContactMenu: React.FC = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-white dark:bg-gray-900 w-full p-3 min-w-[200px] z-50">
         <div className="space-y-3 py-1">
-          <div className="flex items-center gap-2 text-sm">
-            <Mail className="h-4 w-4 text-primary" />
-            <a href="mailto:aaronsonnie@gmail.com" className="text-foreground/80 hover:text-foreground">
-              aaronsonnie@gmail.com
-            </a>
+          <div className="text-sm">
+            <p className="font-medium text-foreground">Karivaradhan C</p>
           </div>
           <div className="flex items-center gap-2 text-sm">
             <Phone className="h-4 w-4 text-primary" />
-            <a href="tel:+919944226180" className="text-foreground/80 hover:text-foreground">
-              +91 9944226180
+            <a href="tel:+916380033886" className="text-foreground/80 hover:text-foreground">
+              +91 6380033886
             </a>
           </div>
         </div>

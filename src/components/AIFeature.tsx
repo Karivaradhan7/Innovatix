@@ -12,15 +12,38 @@ interface AIFeatureProps {
   description: string;
   placeholder: string;
   feature: "content" | "quiz" | "materials" | "notes" | "flashcards" | "assistant";
+  showFileUpload?: boolean;
+  showQuantitySelector?: boolean;
 }
 
-export function AIFeature({ title, description, placeholder, feature }: AIFeatureProps) {
+export function AIFeature({ title, description, placeholder, feature, showFileUpload = false, showQuantitySelector = false }: AIFeatureProps) {
   const [prompt, setPrompt] = useState("");
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showPdfDialog, setShowPdfDialog] = useState(false);
   const [pdfFilename, setPdfFilename] = useState("");
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [quantity, setQuantity] = useState(4);
   const { toast } = useToast();
+
+  const handleFileUpload = async (file: File) => {
+    setUploadedFile(file);
+    try {
+      const text = await file.text();
+      const filePrompt = `Based on this document content, ${prompt || 'generate relevant content'}:\n\n${text.slice(0, 3000)}`;
+      setPrompt(filePrompt);
+      toast({
+        title: "File uploaded",
+        description: `${file.name} has been processed successfully.`,
+      });
+    } catch (error) {
+      toast({
+        title: "Error reading file",
+        description: "Could not read the uploaded file. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
 
   const generateContent = async () => {
     if (!prompt.trim()) {
@@ -36,11 +59,14 @@ export function AIFeature({ title, description, placeholder, feature }: AIFeatur
     setResult("");
 
     try {
-      // Use LangChain to generate content
-      const generatedContent = await generateWithLangChain(feature, prompt);
+      let enhancedPrompt = prompt;
+      if (showQuantitySelector && quantity) {
+        enhancedPrompt = `Generate exactly ${quantity} questions. ${prompt}`;
+      }
+
+      const generatedContent = await generateWithLangChain(feature, enhancedPrompt);
       setResult(generatedContent);
-      
-      // Set default PDF filename based on feature type
+
       setPdfFilename(`${feature}_${new Date().toISOString().slice(0, 10)}`);
     } catch (error) {
       console.error("Error generating content:", error);
@@ -100,6 +126,11 @@ export function AIFeature({ title, description, placeholder, feature }: AIFeatur
           placeholder={placeholder}
           isLoading={isLoading}
           onGenerate={generateContent}
+          showFileUpload={showFileUpload}
+          onFileUpload={handleFileUpload}
+          showQuantitySelector={showQuantitySelector}
+          quantity={quantity}
+          onQuantityChange={setQuantity}
         />
         
         <AIResultDisplay

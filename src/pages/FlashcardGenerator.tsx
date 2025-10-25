@@ -9,8 +9,9 @@ const FlashcardGenerator = () => {
       <AIFeature
         title="Flashcard Generator"
         description="Create interactive flashcards to boost memorization and enhance learning retention."
-        placeholder="Describe the flashcards you need (e.g., 'Create 10 flashcards about human anatomy terms')"
+        placeholder="Describe the flashcards you need (e.g., 'Create 10 flashcards about human anatomy terms') or upload a document"
         feature="flashcards"
+        showFileUpload={true}
       />
     </ProtectedRoute>
   );

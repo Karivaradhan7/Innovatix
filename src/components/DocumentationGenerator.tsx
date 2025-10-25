@@ -340,7 +340,7 @@ const getGoogleAI = () => {
   
   return new ChatGoogleGenerativeAI({
     apiKey: API_KEY,
-    modelName: "gemini-1.5-flash", // Using flash model for faster responses
+    modelName: "gemini-2.0-flash-exp",
     maxOutputTokens: 1024, // Reduced for faster generation
     temperature: 0.5, // Reduced for more consistent, faster responses
     topK: 20, // Reduced for faster processing

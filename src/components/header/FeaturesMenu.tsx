@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Check, ChevronDown, FileText, FlaskConical, Layers, Lightbulb, MessagesSquare, ScrollText, MenuIcon } from "lucide-react";
+import { Check, ChevronDown, FileText, FlaskConical, Layers, Lightbulb, MessagesSquare, ScrollText, MenuIcon, Network } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -55,6 +55,12 @@ export const FeaturesMenu: React.FC<FeaturesMenuProps> = ({ isMobile = false }) 
       description: "Create study flashcards",
       icon: <Lightbulb className="h-4 w-4 mr-2" />,
       path: "/flashcard-generator",
+    },
+    {
+      name: "Mindmap Generator",
+      description: "Create visual mindmaps",
+      icon: <Network className="h-4 w-4 mr-2" />,
+      path: "/mindmap-generator",
     },
     {
       name: "AI Learning Assistant",
