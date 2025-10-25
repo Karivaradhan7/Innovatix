@@ -4,13 +4,13 @@ import { getStorage } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBtshILUfAm8OQ-d6LljrLSv8dsxe69_Y0",
-  authDomain: "aptora1.firebaseapp.com",
-  projectId: "aptora1",
-  storageBucket: "aptora1.firebasestorage.app",
-  messagingSenderId: "550438290521",
-  appId: "1:550438290521:web:82e93a9df3d1a25a891d48",
-  measurementId: "G-EQ37G51FF7"
+  apiKey: "AIzaSyBeBRq1z-diZGRuxSonsI4Jn-9UQ8v8IU0",
+  authDomain: "aptora-4108d.firebaseapp.com",
+  projectId: "aptora-4108d",
+  storageBucket: "aptora-4108d.firebasestorage.app",
+  messagingSenderId: "966897977550",
+  appId: "1:966897977550:web:8f8910927011ab9225689f",
+  measurementId: "G-SWFKT9VK3P"
 };
 
 const app = initializeApp(firebaseConfig);
